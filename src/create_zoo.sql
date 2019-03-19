@@ -19,17 +19,6 @@ CREATE TABLE ENUM_SPECIES (
 	PRIMARY KEY (species_id)
 );
 
-/*
-This table represents an enumerated data type and contains
-all sexes of animal within a zoo
-REFERENCED BY: HEALTH_PROFILE(sex)
-*/
-CREATE TABLE ENUM_SEX (
-    sex_id				CHAR(1)					NOT NULL,
-    sex_name				VARCHAR(6)				NOT NULL,
-    CONSTRAINT ENUM_SEX_PK
-	PRIMARY KEY (sex_id)
-);
 
 /*
 This table represents an enumerated data type and contains
@@ -233,7 +222,7 @@ REFERENCED BY: ANIMAL(health_profile)
 */
 CREATE TABLE HEALTH_PROFILE (
     profile_id				VARCHAR(6)				NOT NULL,
-    sex					CHAR(1)					NOT NULL,
+    sex					ENUM('M','F')			NOT NULL,
     DOB					DATE					NOT NULL,
     weight				FLOAT					NOT NULL,
     weight_unit				VARCHAR(2)				NOT NULL,
@@ -243,8 +232,6 @@ CREATE TABLE HEALTH_PROFILE (
     treatment_plan			VARCHAR(6),
     CONSTRAINT PROFILE_PK
 	PRIMARY KEY (profile_id),
-    CONSTRAINT PROFILE_SEX_FK
-	FOREIGN KEY (sex) REFERENCES ENUM_SEX(sex_id),
     CONSTRAINT PROFILE_WUNIT_FK
 	FOREIGN KEY (weight_unit) REFERENCES ENUM_UNIT_MEASURE(unit_id),
     CONSTRAINT PROFILE_HUNIT_FK
