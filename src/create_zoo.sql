@@ -1,6 +1,5 @@
 /*
-DATE: 3/16/2019
-DESCRIPTION: This query loads the database schema into the DBMS, mySQL
+This query loads the database schema into mySQL DMBS
 */
 
 CREATE DATABASE zoo;
@@ -473,4 +472,19 @@ CREATE TABLE SCHEDULED_REPAIR (
     CONSTRAINT REPAIR_REPAIRER_FK
 		FOREIGN KEY (repairer) REFERENCES EMPLOYEE(empl_id)
 			ON DELETE RESTRICT		ON UPDATE CASCADE
+);
+
+/*
+This table contains login information about users of the web
+application that interacts with the database
+*/
+CREATE TABLE APP_USER (
+	user_id					INT UNSIGNED			NOT NULL,
+    username				VARCHAR(15)				NOT NULL,
+    user_password			VARCHAR(30)				NOT NULL,
+    CONSTRAINT USER_PK
+		PRIMARY KEY (user_id),
+	CONSTRAINT USER_ID_FK
+		FOREIGN KEY (user_id) REFERENCES EMPLOYEE(empl_id)
+			ON DELETE CASCADE		ON UPDATE CASCADE
 );
