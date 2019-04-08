@@ -389,9 +389,15 @@ CREATE TABLE MEMBERSHIP (
     CONSTRAINT MEMBER_PCONTACT_FK
 		FOREIGN KEY (primary_contact) REFERENCES CONTACT(contact_id)
 			ON DELETE RESTRICT		ON UPDATE CASCADE,
+/********************************************************************************************/
+/*************************************** colten: ********************************************/
+/********************************************************************************************/
     CONSTRAINT MEMBER_SCONTACT_FK
 		FOREIGN KEY (secondary_contact) REFERENCES CONTACT(contact_id)
 			ON DELETE SET NULL		ON UPDATE CASCADE,
+/********************************************************************************************/
+/******************************* secondary_contact doesn't exist *****************************/
+/********************************************************************************************/
     CONSTRAINT MEMBER_STATUS_FK
 		FOREIGN KEY (member_status) REFERENCES ENUM_MEMBERSHIP_STATUS(member_status_id)
 			ON DELETE RESTRICT		ON UPDATE CASCADE
